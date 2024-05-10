@@ -7,6 +7,9 @@ import { PayerContainerComponent } from './payer-container/payer-container.compo
 import { PayerTransactionComponent } from './payer-transaction/payer-transaction.component';
 import { PayerHistoryComponent } from './payer-history/payer-history.component';
 
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { InputGroupModule } from 'primeng/inputgroup';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,11 @@ import { PayerHistoryComponent } from './payer-history/payer-history.component';
   ],
   imports: [
     CommonModule,
-    PayerRoutingModule
+    PayerRoutingModule,
+    InputGroupAddonModule,
+    InputGroupModule,
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class PayerModule { }
