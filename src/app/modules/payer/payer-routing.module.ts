@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { PayerRegisterComponent } from './payer-register/payer-register.component';
-import { PayerContainerComponent } from './payer-container/payer-container.component';
-import { PayerTransactionComponent } from './payer-transaction/payer-transaction.component';
-import { PayerHistoryComponent } from './payer-history/payer-history.component';
+import { PayerRegisterComponent } from './components/payer-register/payer-register.component';
+import { PayerContainerComponent } from './components/payer-container/payer-container.component';
+import { PayerTransactionComponent } from './components/payer-transaction/payer-transaction.component';
+import { PayerHistoryComponent } from './components/payer-history/payer-history.component';
 
 const routes: Routes = [
   { path: 'register', component: PayerRegisterComponent },

@@ -1,0 +1,166 @@
+<form [formGroup]="profileForm" (submit)="onSubmit()">
+  <h2>Create your account</h2>
+  <p-inputGroup>
+    <p-inputGroupAddon>
+      <i class="pi pi-user"></i>
+    </p-inputGroupAddon>
+    <input
+      id="firstName"
+      class="p-inputtext"
+      pInputText
+      formControlName="firstName"
+      placeholder="First name"
+    />
+    <small
+      class="p-error block"
+      *ngIf="
+        profileForm.get('firstName')?.invalid &&
+        profileForm.get('firstName')?.dirty
+      "
+    >
+      First name is required</small
+    >
+  </p-inputGroup>
+
+  <p-inputGroup>
+    <p-inputGroupAddon>
+      <i class="pi pi-user"></i>
+    </p-inputGroupAddon>
+    <input
+      class="p-inputtext"
+      pInputText
+      formControlName="lastName"
+      placeholder="Last name"
+    />
+  </p-inputGroup>
+
+  <p-inputGroup>
+    <p-inputGroupAddon>
+      <i class="pi pi-user"></i>
+    </p-inputGroupAddon>
+    <input
+      class="p-inputtext"
+      pInputText
+      formControlName="fiscalCode"
+      placeholder="Fiscal code"
+    />
+  </p-inputGroup>
+
+  <p-inputGroup>
+    <p-inputGroupAddon>
+      <i class="pi pi-user"></i>
+    </p-inputGroupAddon>
+    <input
+      class="p-inputtext"
+      pInputText
+      formControlName="address"
+      placeholder="Address"
+    />
+  </p-inputGroup>
+
+  <p-inputGroup>
+    <p-calendar
+      formControlName="birthday"
+      [iconDisplay]="'input'"
+      [showIcon]="true"
+      inputId="icondisplay"
+    />
+  </p-inputGroup>
+
+  <div class="account-type-btns">
+    <button
+      pButton
+      pRipple
+      type="button"
+      label="Bank Account"
+      class="p-button-primary"
+      (click)="changeAccountType(AccountType.BANK)"
+    ></button>
+    <p>Or</p>
+    <button
+      pButton
+      pRipple
+      type="button"
+      label="Paypal"
+      class="p-button-primary"
+      (click)="changeAccountType(AccountType.PAYPAL)"
+    ></button>
+  </div>
+
+  <div class="bank-account" *ngIf="profileForm.get('accountType')?.value === 0">
+    <p-inputGroup>
+      <p-inputGroupAddon>
+        <i class="pi pi-user"></i>
+      </p-inputGroupAddon>
+      <input
+        class="p-inputtext"
+        pInputText
+        formControlName="iban"
+        placeholder="IBAN"
+      />
+    </p-inputGroup>
+    <p-inputGroup>
+      <p-inputGroupAddon>
+        <i class="pi pi-user"></i>
+      </p-inputGroupAddon>
+      <input
+        class="p-inputtext"
+        pInputText
+        formControlName="bankName"
+        placeholder="Bank name"
+      />
+    </p-inputGroup>
+  </div>
+
+  <div *ngIf="profileForm.get('accountType')?.value === 1">
+    <p-inputGroup>
+      <p-inputGroupAddon>
+        <i class="pi pi-user"></i>
+      </p-inputGroupAddon>
+      <input
+        class="p-inputtext"
+        pInputText
+        formControlName="paypalUsername"
+        placeholder="Paypal username"
+      />
+    </p-inputGroup>
+  </div>
+  <ng-container *ngIf="profileForm.get('accountType')?.value != null">
+
+    
+    <div class="label-block">
+      <label class="block font-bold mb-2" for="weekly-transfer-limit"
+        >Weekly Transfer Limit</label
+      >
+
+      <p-inputNumber
+        mode="currency"
+        currency="EUR"
+        formControlName="weeklyTransferLimit"
+        itemId="weekly-transfer-limit"
+      />
+    </div>
+
+    <div class="label-block">
+      <label class="block font-bold mb-2" for="weekly-expenses-limit"
+        >Weekly Expenses Limit</label
+      >
+
+      <p-inputNumber
+        mode="currency"
+        currency="EUR"
+        formControlName="weeklyExpensesLimit"
+        itemId="weekly-expenses-limit"
+      />
+    </div>
+
+  </ng-container>
+
+  <button
+    [disabled]="!profileForm.valid"
+    pButton
+    pRipple
+    label="Submit"
+    class="p-button-primary"
+  ></button>
+</form>
