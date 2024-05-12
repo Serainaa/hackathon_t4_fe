@@ -1,0 +1,9 @@
+<p-dropdown
+  *ngIf="shops$ | async as data"
+  [options]="data"
+  [(ngModel)]="selectedShop"
+  [checkmark]="true"
+  optionLabel="shopName"
+  [showClear]="true"
+  placeholder="Select a City"
+/>

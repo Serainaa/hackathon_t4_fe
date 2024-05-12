@@ -13,13 +13,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CalendarModule } from 'primeng/calendar';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
+import { DropdownModule } from 'primeng/dropdown';
+import { PayerShopDropdownComponent } from './components/payer-shop-dropdown/payer-shop-dropdown.component';
 
 @NgModule({
   declarations: [
     PayerRegisterComponent,
     PayerContainerComponent,
     PayerTransactionComponent,
-    PayerHistoryComponent
+    PayerHistoryComponent,
+    PayerShopDropdownComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +33,8 @@ import { InputTextModule } from 'primeng/inputtext';
     FormsModule,
     CalendarModule,
     InputNumberModule,
-    InputTextModule
+    InputTextModule,
+    DropdownModule
   ]
 })
 export class PayerModule { }

@@ -12,10 +12,16 @@ const routes: Routes = [
     path: '',
     component: PayerContainerComponent,
     children: [
-      { path: 'newTransaction', component: PayerTransactionComponent },
+      { path: 'transaction', component: PayerTransactionComponent },
       { path: 'history', component: PayerHistoryComponent },
       { path: 'profile', component: PayerRegisterComponent },
     ],
+  },
+  {
+    path: '',
+    redirectTo: "transaction",
+    pathMatch: 'full'
+
   },
 ];
 

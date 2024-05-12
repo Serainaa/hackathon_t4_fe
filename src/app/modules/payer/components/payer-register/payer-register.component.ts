@@ -6,7 +6,8 @@ import {
   ValidationErrors,
   Validators,
 } from '@angular/forms';
-import { Subject, takeUntil, tap } from 'rxjs';
+import { Observable, Subject, take, takeUntil, tap } from 'rxjs';
+import { PayerService } from '../../services/payer.service';
 
 export enum AccountType {
   BANK = 0,
@@ -24,13 +25,14 @@ export class PayerRegisterComponent {
   public profileForm: FormGroup;
   public readonly AccountType: typeof AccountType = AccountType
 
-  constructor(private formBuilder: FormBuilder) {
+
+  constructor(private formBuilder: FormBuilder, private payerService: PayerService) {
     this.profileForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: [''],
       fiscalCode: [''],
       address: [''],
-      birthday: ['', [Validators.required, this.validateDate]],
+      birthday: ['', [Validators.required]],
       iban: [''],
       bankName: [''],
       paypalUsername: [''],
@@ -38,6 +40,7 @@ export class PayerRegisterComponent {
       weeklyExpensesLimit: ['', Validators.required],
       accountType: [null, Validators.required],
     });
+
   }
 
   ngOnInit(): void {
@@ -46,15 +49,6 @@ export class PayerRegisterComponent {
 
   ngOnDestroy(): void {
     this.onDestroy$.next(true);
-  }
-
-  validateDate(control: any) {
-    const selectedDate = new Date(control.value);
-    const currentDate = new Date();
-    if (selectedDate > currentDate) {
-      return { futureDate: true };
-    }
-    return null;
   }
 
   requiredIfPaypalSelected(control: FormControl): ValidationErrors | null {
@@ -69,6 +63,12 @@ export class PayerRegisterComponent {
 
   onSubmit() {
     console.log(this.profileForm.value);
+    this.payerService.createPayerAccount(this.profileForm.value).pipe(
+      tap((response) => {
+        console.log(response)
+      }),
+      take(1)
+    ).subscribe()
   }
 
   changeAccountType(accountType: AccountType): void {
@@ -109,4 +109,6 @@ export class PayerRegisterComponent {
     this.profileForm.get('bankName')?.updateValueAndValidity();
     this.profileForm.get('bankName')?.updateValueAndValidity();
   }
+
+
 }
