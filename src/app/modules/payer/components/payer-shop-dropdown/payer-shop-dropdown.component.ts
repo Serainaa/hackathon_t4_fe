@@ -21,11 +21,4 @@ export class PayerShopDropdownComponent {
   constructor(private payerService: PayerService) {
     this.shops$ = this.payerService.getShops$()
   }
-
-  ngOnInit() {
-    // this.shops = [
-    //     { shopName: 'New York' },
-    //     { shopName: 'Rome' }
-    // ];
-  }
 }

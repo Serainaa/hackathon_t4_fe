@@ -1,23 +1,24 @@
-<p>payer-transaction works!</p>
-<app-payer-shop-dropdown></app-payer-shop-dropdown>
+<div>
+  <h2>Pay Now</h2>
 
-<div class="label-block">
+  <app-payer-shop-dropdown></app-payer-shop-dropdown>
+
+  <div class="label-block">
     <label class="block font-bold mb-2" for="weekly-expenses-limit"
       >Amount of money</label
     >
 
-    <p-inputNumber
-      mode="currency"
-      currency="EUR"
-      [(ngModel)]="amount"
-    />
+    <p-inputNumber mode="currency" currency="EUR" [(ngModel)]="amount" />
+  </div>
+
+  <button
+    pButton
+    pRipple
+    type="button"
+    label="Send"
+    class="p-button-primary"
+    (click)="sendPayment()"
+  ></button>
 </div>
 
-<button
-pButton
-pRipple
-type="button"
-label="Send"
-class="p-button-primary"
-(click)="sendPayment()"
-></button>
+<p-toast />

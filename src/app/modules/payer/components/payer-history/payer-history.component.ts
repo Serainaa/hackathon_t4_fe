@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { PayerService } from '../../services/payer.service';
+import { Observable } from 'rxjs';
+import { ITransaction } from '../../../../shared/interfaces/transaction.interface';
+
 
 @Component({
   selector: 'app-payer-history',
@@ -7,5 +11,11 @@ import { Component } from '@angular/core';
   styleUrl: './payer-history.component.scss'
 })
 export class PayerHistoryComponent {
+
+  history$: Observable<ITransaction[]>;
+
+  constructor(private payerService: PayerService) {
+    this.history$ = this.payerService.displayTransactions$("")
+  }
 
 }

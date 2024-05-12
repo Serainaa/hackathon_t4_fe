@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { Observable, Subject, take, takeUntil, tap } from 'rxjs';
 import { PayerService } from '../../services/payer.service';
+import { Router } from '@angular/router';
 
 export enum AccountType {
   BANK = 0,
@@ -23,10 +24,13 @@ export enum AccountType {
 export class PayerRegisterComponent {
   private onDestroy$ = new Subject<boolean>();
   public profileForm: FormGroup;
-  public readonly AccountType: typeof AccountType = AccountType
+  public readonly AccountType: typeof AccountType = AccountType;
 
-
-  constructor(private formBuilder: FormBuilder, private payerService: PayerService) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private payerService: PayerService,
+    private router: Router
+  ) {
     this.profileForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: [''],
@@ -40,7 +44,6 @@ export class PayerRegisterComponent {
       weeklyExpensesLimit: ['', Validators.required],
       accountType: [null, Validators.required],
     });
-
   }
 
   ngOnInit(): void {
@@ -51,24 +54,17 @@ export class PayerRegisterComponent {
     this.onDestroy$.next(true);
   }
 
-  requiredIfPaypalSelected(control: FormControl): ValidationErrors | null {
-    if (
-      this.profileForm.get('accountType')?.value === AccountType.PAYPAL &&
-      !control.value
-    ) {
-      return { required: true };
-    }
-    return null;
-  }
-
   onSubmit() {
-    console.log(this.profileForm.value);
-    this.payerService.createPayerAccount(this.profileForm.value).pipe(
-      tap((response) => {
-        console.log(response)
-      }),
-      take(1)
-    ).subscribe()
+    this.payerService
+      .createPayerAccount$(this.profileForm.value)
+      .pipe(
+        tap((response) => {
+          console.log(response);
+        }),
+        tap(() => this.router.navigate(['payer/transaction'])),
+        take(1)
+      )
+      .subscribe();
   }
 
   changeAccountType(accountType: AccountType): void {
@@ -109,6 +105,4 @@ export class PayerRegisterComponent {
     this.profileForm.get('bankName')?.updateValueAndValidity();
     this.profileForm.get('bankName')?.updateValueAndValidity();
   }
-
-
 }

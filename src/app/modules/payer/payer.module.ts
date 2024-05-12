@@ -15,6 +15,10 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 import { PayerShopDropdownComponent } from './components/payer-shop-dropdown/payer-shop-dropdown.component';
+import { TransactionTableComponent } from '../../shared/components/transaction-table/transaction-table.component';
+import { TabMenuModule } from 'primeng/tabmenu';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [
@@ -34,7 +38,11 @@ import { PayerShopDropdownComponent } from './components/payer-shop-dropdown/pay
     CalendarModule,
     InputNumberModule,
     InputTextModule,
-    DropdownModule
-  ]
+    DropdownModule,
+    TransactionTableComponent,
+    TabMenuModule,
+    ToastModule
+  ],
+  providers: [MessageService]
 })
 export class PayerModule { }

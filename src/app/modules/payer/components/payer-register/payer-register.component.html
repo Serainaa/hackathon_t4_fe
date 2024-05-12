@@ -60,6 +60,7 @@
 
   <p-inputGroup>
     <p-calendar
+    placeholder="Date of birth"
       formControlName="birthday"
       [iconDisplay]="'input'"
       [showIcon]="true"
@@ -125,14 +126,12 @@
       />
     </p-inputGroup>
   </div>
-  <ng-container *ngIf="profileForm.get('accountType')?.value != null">
 
-    
+  <ng-container *ngIf="profileForm.get('accountType')?.value != null">
     <div class="label-block">
       <label class="block font-bold mb-2" for="weekly-transfer-limit"
         >Weekly Transfer Limit</label
       >
-
       <p-inputNumber
         mode="currency"
         currency="EUR"
@@ -140,12 +139,9 @@
         itemId="weekly-transfer-limit"
       />
     </div>
-
     <div class="label-block">
       <label class="block font-bold mb-2" for="weekly-expenses-limit"
-        >Weekly Expenses Limit</label
-      >
-
+        >Weekly Expenses Limit</label>
       <p-inputNumber
         mode="currency"
         currency="EUR"
@@ -153,7 +149,6 @@
         itemId="weekly-expenses-limit"
       />
     </div>
-
   </ng-container>
 
   <button

@@ -1,0 +1,14 @@
+:host {
+    display: flex;
+    gap: 48px;
+    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    button {
+        width: 300px;
+        height: 150px;
+    }
+}

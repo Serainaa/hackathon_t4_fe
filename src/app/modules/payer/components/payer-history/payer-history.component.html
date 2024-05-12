@@ -1,1 +1,1 @@
-<p>payer-history works!</p>
+<app-transaction-table [transactionData]="data" *ngIf="history$ | async as data"></app-transaction-table>

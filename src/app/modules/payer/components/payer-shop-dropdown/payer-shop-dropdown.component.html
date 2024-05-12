@@ -1,3 +1,6 @@
+<label class="block font-bold mb-2" for="weekly-expenses-limit"
+>Select a shop</label
+>
 <p-dropdown
   *ngIf="shops$ | async as data"
   [options]="data"
@@ -5,5 +8,4 @@
   [checkmark]="true"
   optionLabel="shopName"
   [showClear]="true"
-  placeholder="Select a City"
 />

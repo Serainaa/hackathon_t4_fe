@@ -1,0 +1,26 @@
+<div class="card">
+  <h5>Transaction history</h5>
+  <p-table [value]="transactionData" [tableStyle]="{ 'min-width': '60rem' }">
+    <ng-template pTemplate="header">
+      <tr *ngIf="fieldNames?.length">
+        <th
+          *ngFor="let field of fieldNames"
+          [pSortableColumn]="field.id"
+          style="width: 20%"
+        >
+          {{ field.name }}
+          <p-sortIcon field="transaction.key"></p-sortIcon>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-transaction>
+      <tr>
+        <td *ngIf="transaction.date">{{ transaction.date }}</td>
+        <td *ngIf="transaction?.sourceName">{{ transaction?.sourceName }}</td>
+        <td *ngIf="transaction?.targetName">{{ transaction?.targetName }}</td>
+        <td *ngIf="transaction.amount">{{ transaction.amount }}</td>
+      </tr>
+
+    </ng-template>
+  </p-table>
+</div>

@@ -9,6 +9,7 @@ import { ShopRoutingModule } from './shop-routing.module';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TabMenuModule } from 'primeng/tabmenu';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     InputGroupAddonModule,
     InputGroupModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    TabMenuModule
   ]
 })
 export class ShopModule { }
