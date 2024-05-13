@@ -1,7 +1,6 @@
 import { Component, Type } from '@angular/core';
 import {
   FormBuilder,
-  FormControl,
   FormGroup,
   ValidationErrors,
   Validators,

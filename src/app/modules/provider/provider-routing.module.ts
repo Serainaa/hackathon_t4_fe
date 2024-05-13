@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ProviderRegisterComponent } from './provider-register/provider-register.component';
-import { ProviderContainerComponent } from './provider-container/provider-container.component';
-import { ProviderHistoryComponent } from './provider-history/provider-history.component';
+import { ProviderRegisterComponent } from './components/provider-register/provider-register.component';
+import { ProviderContainerComponent } from './components/provider-container/provider-container.component';
+import { ProviderHistoryComponent } from './components/provider-history/provider-history.component';
 
 
 const routes: Routes = [
@@ -16,6 +16,12 @@ const routes: Routes = [
       { path: 'profile', component: ProviderRegisterComponent },
     ],
   },
+  {
+    path: '',
+    redirectTo: "transaction",
+    pathMatch: 'full'
+
+  }
 ];
 
 @NgModule({

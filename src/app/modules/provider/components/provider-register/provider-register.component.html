@@ -1,0 +1,109 @@
+<form [formGroup]="profileForm" (submit)="onSubmit()">
+    <h2>Create your account</h2>
+    <p-inputGroup>
+      <p-inputGroupAddon>
+        <i class="pi pi-user"></i>
+      </p-inputGroupAddon>
+      <input
+        id="companyName"
+        class="p-inputtext"
+        pInputText
+        formControlName="companyName"
+        placeholder="Company name"
+      />
+      <small
+        class="p-error block"
+        *ngIf="
+          profileForm.get('companyName')?.invalid &&
+          profileForm.get('companyName')?.dirty
+        "
+      >
+        Shop name is required</small
+      >
+    </p-inputGroup>
+  
+    <p-inputGroup>
+      <p-inputGroupAddon>
+        <i class="pi pi-user"></i>
+      </p-inputGroupAddon>
+      <input
+        id="VATCode"
+        class="p-inputtext"
+        pInputText
+        formControlName="VATCode"
+        placeholder="VAT Code"
+      />
+      <small
+      class="p-error block"
+      *ngIf="
+        profileForm.get('VATCode')?.invalid &&
+        profileForm.get('VATCode')?.dirty
+      "
+    >
+      VAT code is required</small
+    >
+    </p-inputGroup>
+  
+    <p-inputGroup>
+      <p-inputGroupAddon>
+        <i class="pi pi-user"></i>
+      </p-inputGroupAddon>
+      <input
+        class="p-inputtext"
+        pInputText
+        formControlName="fiscalAddress"
+        placeholder="Address"
+      />
+    </p-inputGroup>
+  
+    <p-inputGroup>
+      <p-inputGroupAddon>
+        <i class="pi pi-user"></i>
+      </p-inputGroupAddon>
+      <input
+        id="iban"
+        class="p-inputtext"
+        pInputText
+        formControlName="iban"
+        placeholder="IBAN"
+      />
+      <small
+      class="p-error block"
+      *ngIf="
+        profileForm.get('iban')?.invalid &&
+        profileForm.get('iban')?.dirty
+      "
+    >
+      IBAN is required</small
+    >
+    </p-inputGroup>
+
+    <p-inputGroup>
+        <p-inputGroupAddon>
+          <i class="pi pi-user"></i>
+        </p-inputGroupAddon>
+        <input
+            id="bankname"
+          class="p-inputtext"
+          pInputText
+          formControlName="bankName"
+          placeholder="Bank Name"
+        />
+        <small
+        class="p-error block"
+        *ngIf="
+          profileForm.get('bankname')?.invalid &&
+          profileForm.get('bankname')?.dirty
+        "
+      >
+        IBAN is required</small
+      >
+    </p-inputGroup>  
+    <button
+      pButton
+      pRipple
+      label="Submit"
+      class="p-button-primary"
+    ></button>
+  </form>
+  

@@ -21,7 +21,7 @@ const routes: Routes = [
     redirectTo: "transaction",
     pathMatch: 'full'
 
-  },
+  }
 ];
 
 @NgModule({

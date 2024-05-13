@@ -11,7 +11,6 @@ import { ITransaction } from '../../../../shared/interfaces/transaction.interfac
 })
 export class ShopHistoryComponent {
 
-
   history$: Observable<ITransaction[]>;
 
   constructor(private shopService: ShopService) {

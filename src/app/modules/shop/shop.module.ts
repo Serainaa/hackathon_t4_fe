@@ -11,6 +11,9 @@ import { InputGroupModule } from 'primeng/inputgroup';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { TransactionTableComponent } from '../../shared/components/transaction-table/transaction-table.component';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { TransactionTableComponent } from '../../shared/components/transaction-t
     ReactiveFormsModule,
     FormsModule,
     TabMenuModule,
-    TransactionTableComponent
+    TransactionTableComponent,
+    ButtonModule,
+    InputNumberModule,
+    InputTextModule
   ]
 })
 export class ShopModule { }
