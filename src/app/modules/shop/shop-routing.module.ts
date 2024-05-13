@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ShopRegisterComponent } from './shop-register/shop-register.component';
-import { ShopContainerComponent } from './shop-container/shop-container.component';
-import { ShopHistoryComponent } from './shop-history/shop-history.component';
+import { ShopRegisterComponent } from './components/shop-register/shop-register.component';
+import { ShopContainerComponent } from './components/shop-container/shop-container.component';
+import { ShopHistoryComponent } from './components/shop-history/shop-history.component';
 
 
 const routes: Routes = [
@@ -15,6 +15,12 @@ const routes: Routes = [
       { path: 'history', component: ShopHistoryComponent },
       { path: 'profile', component: ShopRegisterComponent },
     ],
+  },
+  {
+    path: '',
+    redirectTo: "transaction",
+    pathMatch: 'full'
+
   },
 ];
 

@@ -13,9 +13,15 @@ export class PayerService {
   constructor(private httpClient: HttpClient) {}
 
   createPayerAccount$(params: IPayerAccountParams) {
-    const link = 'http://localhost:3000/template';
+    const link = 'http://localhost:3000/users';
     return of(params);
     //return this.httpClient.post(link, params)
+  }
+
+  getPayerProfile$(userId: string): Observable<IShop[]> {
+    const link = 'http://localhost:3000/payer';
+    // return of(params)
+    return this.httpClient.get<any>(link).pipe(map((res) => res.IPayerAccountParams));
   }
 
   getShops$(): Observable<IShop[]> {

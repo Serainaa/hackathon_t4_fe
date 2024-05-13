@@ -12,7 +12,6 @@ export class ShopContainerComponent {
   activeItem: MenuItem;
   ngOnInit(): void {
     this.items = [
-      { label: 'New Transaction', icon: 'pi pi-fw pi-home', routerLink: "./transaction" },
       { label: 'History', icon: 'pi pi-fw pi-calendar', routerLink: "./history" },
       { label: 'Edit', icon: 'pi pi-fw pi-pencil', routerLink:"./profile" }
     ];
