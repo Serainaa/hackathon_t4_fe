@@ -20,6 +20,7 @@ import { TabMenuModule } from 'primeng/tabmenu';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { PayerEditComponent } from './components/payer-edit/payer-edit.component';
+import { PayerLogInComponent } from './components/payer-log-in/payer-log-in.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { PayerEditComponent } from './components/payer-edit/payer-edit.component
     PayerTransactionComponent,
     PayerHistoryComponent,
     PayerShopDropdownComponent,
-    PayerEditComponent
+    PayerEditComponent,
+    PayerLogInComponent
   ],
   imports: [
     CommonModule,

@@ -35,13 +35,13 @@ export class PayerRegisterComponent {
       lastName: [''],
       fiscalCode: [''],
       address: [''],
-      birthday: ['', [Validators.required]],
+      birthdate: ['', [Validators.required]],
       iban: [''],
       bankName: [''],
       paypalUsername: [''],
       weeklyTransferLimit: [''],
       weeklyExpensesLimit: ['', Validators.required],
-      accountType: [null, Validators.required],
+      //accountType: [null, Validators.required],
     });
   }
 

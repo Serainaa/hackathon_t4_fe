@@ -13,11 +13,30 @@ export class PayerService {
   constructor(private httpClient: HttpClient) {}
 
   createPayerAccount$(params: IPayerAccountParams) {
-    const link = 'http://localhost:3000/users';
+    // const httpOptions = {
+    //   headers: new HttpHeaders().set('content-type', 'application/json')
+    //   .set('Access-Control-Allow-Origin', '*')
+  //   const headers= new HttpHeaders()
+  // .set('content-type', 'application/json')
+  // .set('Access-Control-Allow-Origin', '*');
+  const httpOptions = {
+    headers: new HttpHeaders({
+    'Content-Type':  'application/json',
+    'Access-Control-Allow-Origin': '*' ,
+    "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE"
+    })
+  };
+
+    const link = 'http://localhost:8081/api/users';
+    //return of(params);
+    return this.httpClient.post(link, params, httpOptions)
+  }
+
+  logInPayer$(params: ITransactionParams) {
+    const link = 'http://localhost:3000/payer/newtransaction';
     return of(params);
     //return this.httpClient.post(link, params)
   }
-
   getPayerProfile$(userId: string): Observable<IShop[]> {
     const link = 'http://localhost:3000/payer';
     // return of(params)

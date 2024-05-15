@@ -6,42 +6,37 @@ import {
   Validators,
 } from '@angular/forms';
 import { take, tap } from 'rxjs';
-import { ShopService } from '../../services/shop.service';
+import { PayerService } from '../../services/payer.service';
 import { Router } from '@angular/router';
 
-
-
 @Component({
-  selector: 'app-shop-register',
+  selector: 'app-payer-log-in',
   standalone: false,
-  templateUrl: './shop-register.component.html',
-  styleUrl: './shop-register.component.scss'
+  templateUrl: './payer-log-in.component.html',
+  styleUrl: './payer-log-in.component.scss'
 })
-export class ShopRegisterComponent {
+export class PayerLogInComponent {
   public profileForm: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
-    private shopService: ShopService,
+    private payerService: PayerService,
     private router: Router
   ) {
     this.profileForm = this.formBuilder.group({
-      shopName: ['', Validators.required],
-      VATCode: ['', Validators.required ],
-      address: [''],
-      iban: ['', Validators.required],
-      bankName: ['', Validators.required]
+      username: ['', Validators.required],
+      password: ['', [Validators.required]]
     });
   }
 
   onSubmit() {
-    this.shopService
-      .createShopAccount$(this.profileForm.value)
+    this.payerService
+      .logInPayer$(this.profileForm.value)
       .pipe(
         tap((response) => {
           console.log(response);
         }),
-        tap(() => this.router.navigate(['shop/history'])),
+        tap(() => this.router.navigate(['payer/transaction'])),
         take(1)
       )
       .subscribe();

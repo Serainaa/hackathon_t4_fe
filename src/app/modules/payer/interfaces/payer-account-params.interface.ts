@@ -1,15 +1,16 @@
 import { AccountType } from "../components/payer-register/payer-register.component";
 
 export interface IPayerAccountParams {
-    firstName: string,
-    lastName: string,
+    fullName: string,
+    userame: string,
     fiscalCode: string,
-    birthday: Date,
+    birthdate: Date,
     address: string,
     iban: string,
     bankName: string,
     paypalUsername: string,
     weeklyTransferLimit: number,
     weeklyExpensesLimit: number,
-    accountType: AccountType
+    password: String
+    //accountType: AccountType
 }

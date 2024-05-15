@@ -5,9 +5,11 @@ import { PayerRegisterComponent } from './components/payer-register/payer-regist
 import { PayerContainerComponent } from './components/payer-container/payer-container.component';
 import { PayerTransactionComponent } from './components/payer-transaction/payer-transaction.component';
 import { PayerHistoryComponent } from './components/payer-history/payer-history.component';
+import { PayerLogInComponent } from './components/payer-log-in/payer-log-in.component';
 
 const routes: Routes = [
   { path: 'register', component: PayerRegisterComponent },
+  { path: 'login', component: PayerLogInComponent },
   {
     path: '',
     component: PayerContainerComponent,

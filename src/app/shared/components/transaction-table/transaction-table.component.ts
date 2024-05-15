@@ -2,11 +2,16 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { ITransaction } from '../../interfaces/transaction.interface';
+import { IconFieldModule } from 'primeng/iconfield';
+import { InputIconModule } from 'primeng/inputicon';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { FormsModule } from '@angular/forms';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   selector: 'app-transaction-table',
   standalone: true,
-  imports: [TableModule, CommonModule],
+  imports: [TableModule, CommonModule, IconFieldModule, InputIconModule, MultiSelectModule, FormsModule, InputTextModule],
   templateUrl: './transaction-table.component.html',
   styleUrl: './transaction-table.component.scss',
 })
