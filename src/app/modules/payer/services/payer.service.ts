@@ -5,6 +5,7 @@ import { IPayerAccountParams } from '../interfaces/payer-account-params.interfac
 import { IShop } from '../components/payer-shop-dropdown/payer-shop-dropdown.component';
 import { ITransactionParams } from '../components/payer-transaction/payer-transaction.component';
 import { ITransaction } from '../../../shared/interfaces/transaction.interface';
+import { IPayerLogin } from '../interfaces/payer-login.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -12,13 +13,7 @@ import { ITransaction } from '../../../shared/interfaces/transaction.interface';
 export class PayerService {
   constructor(private httpClient: HttpClient) {}
 
-  createPayerAccount$(params: IPayerAccountParams) {
-    // const httpOptions = {
-    //   headers: new HttpHeaders().set('content-type', 'application/json')
-    //   .set('Access-Control-Allow-Origin', '*')
-  //   const headers= new HttpHeaders()
-  // .set('content-type', 'application/json')
-  // .set('Access-Control-Allow-Origin', '*');
+  createPayerAccount$(params: IPayerAccountParams): Observable<any> {
   const httpOptions = {
     headers: new HttpHeaders({
     'Content-Type':  'application/json',
@@ -32,27 +27,28 @@ export class PayerService {
     return this.httpClient.post(link, params, httpOptions)
   }
 
-  logInPayer$(params: ITransactionParams) {
-    const link = 'http://localhost:3000/payer/newtransaction';
+  logInPayer$(params: IPayerLogin) {
+    const link = 'http://localhost:8081';
     return of(params);
     //return this.httpClient.post(link, params)
   }
+
   getPayerProfile$(userId: string): Observable<IShop[]> {
-    const link = 'http://localhost:3000/payer';
+    const link = 'http://localhost:8081/api/users/' + userId;
     // return of(params)
     return this.httpClient.get<any>(link).pipe(map((res) => res.IPayerAccountParams));
   }
 
   getShops$(): Observable<IShop[]> {
-    const link = 'http://localhost:3000/shops';
-    // return of(params)
+    const link = 'http://localhost:8081/api/shop';
+    //return of(params)
     return this.httpClient.get<any>(link).pipe(map((res) => res.shops));
   }
 
   sendNewTransaction$(params: ITransactionParams) {
-    const link = 'http://localhost:3000/payer/newtransaction';
-    return of(params);
-    //return this.httpClient.post(link, params)
+    const link = 'http://localhost:8081/api/transactions';
+    //return of(params);
+    return this.httpClient.post(link, params)
   }
 
   displayTransactions$(userId: string): Observable<ITransaction[]> {
@@ -68,8 +64,9 @@ export class PayerService {
     //     amount: 2,
     //   },
     // ];
-    const link = 'http://localhost:3000/transactions';
-    return this.httpClient.get<any>(link).pipe(map((res) => res.transactions));
+    const link = 'http://localhost:8081/api/transactions/' + localStorage.getItem("TOKEN");
+    console.log(link)
+    return this.httpClient.get<any>(link);
 
   }
 }

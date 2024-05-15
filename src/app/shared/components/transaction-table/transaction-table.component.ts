@@ -27,7 +27,7 @@ export class TransactionTableComponent {
   public columnNamePrettier: Record<string, string> = {
     date: 'Date',
     sourceName: 'Source Name',
-    targetName: 'Target Name',
+    shopName: 'Target Name',
     amount: 'Amount',
   };
 

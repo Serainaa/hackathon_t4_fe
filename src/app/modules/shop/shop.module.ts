@@ -14,12 +14,15 @@ import { TransactionTableComponent } from '../../shared/components/transaction-t
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
+import { PasswordModule } from 'primeng/password';
+import { ShopLoginComponent } from './components/shop-login/shop-login.component';
 
 @NgModule({
   declarations: [
     ShopRegisterComponent,
     ShopContainerComponent,
-    ShopHistoryComponent
+    ShopHistoryComponent,
+    ShopLoginComponent
   ],
   imports: [
     CommonModule,
@@ -32,7 +35,8 @@ import { ButtonModule } from 'primeng/button';
     TransactionTableComponent,
     ButtonModule,
     InputNumberModule,
-    InputTextModule
+    InputTextModule,
+    PasswordModule
   ]
 })
 export class ShopModule { }

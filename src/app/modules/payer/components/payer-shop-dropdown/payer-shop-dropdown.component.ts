@@ -3,7 +3,7 @@ import { PayerService } from '../../services/payer.service';
 import { Observable, catchError, pluck, tap } from 'rxjs';
 
 export interface IShop {
-  shopId: string;
+  alternativeId?: string;
   shopName: string;
 }
 

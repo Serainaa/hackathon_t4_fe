@@ -3,5 +3,6 @@ export interface IShopAccountParams {
     VATCode: string,
     address: string,
     iban: string,
-    bankName: string
+    bankName: string,
+    password: string
 }

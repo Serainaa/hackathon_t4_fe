@@ -15,7 +15,7 @@ export class PayerHistoryComponent {
   history$: Observable<ITransaction[]>;
 
   constructor(private payerService: PayerService) {
-    this.history$ = this.payerService.displayTransactions$("")
+    this.history$ = this.payerService.displayTransactions$(localStorage.getItem("TOKEN"))
   }
 
 }

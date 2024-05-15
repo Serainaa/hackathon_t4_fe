@@ -8,6 +8,7 @@ import {
 import { take, tap } from 'rxjs';
 import { ShopService } from '../../services/shop.service';
 import { Router } from '@angular/router';
+import { Password } from 'primeng/password';
 
 
 
@@ -27,6 +28,7 @@ export class ShopRegisterComponent {
   ) {
     this.profileForm = this.formBuilder.group({
       shopName: ['', Validators.required],
+      password: ['', Validators.required],
       VATCode: ['', Validators.required ],
       address: [''],
       iban: ['', Validators.required],

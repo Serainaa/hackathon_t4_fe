@@ -1,6 +1,7 @@
 import { Component, Type } from '@angular/core';
 import {
   FormBuilder,
+  FormControl,
   FormGroup,
   ValidationErrors,
   Validators,
@@ -23,6 +24,7 @@ export enum AccountType {
 export class PayerRegisterComponent {
   private onDestroy$ = new Subject<boolean>();
   public profileForm: FormGroup;
+  public fg: FormGroup;
   public readonly AccountType: typeof AccountType = AccountType;
 
   constructor(
@@ -31,8 +33,8 @@ export class PayerRegisterComponent {
     private router: Router
   ) {
     this.profileForm = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: [''],
+      fullName: ['', Validators.required],
+      username: [''],
       fiscalCode: [''],
       address: [''],
       birthdate: ['', [Validators.required]],
@@ -41,8 +43,13 @@ export class PayerRegisterComponent {
       paypalUsername: [''],
       weeklyTransferLimit: [''],
       weeklyExpensesLimit: ['', Validators.required],
-      //accountType: [null, Validators.required],
+      password: ['', Validators.required],
+      //accountType: [null, Validators.required]
     });
+    this.fg = new FormGroup({
+      accountType: new FormControl()
+    });
+    //private accountType: new FormControl(null, Validators.required);
   }
 
   ngOnInit(): void {
@@ -59,6 +66,7 @@ export class PayerRegisterComponent {
       .pipe(
         tap((response) => {
           console.log(response);
+          localStorage.setItem("TOKEN", response.alternativeId)
         }),
         tap(() => this.router.navigate(['payer/transaction'])),
         take(1)
@@ -67,11 +75,11 @@ export class PayerRegisterComponent {
   }
 
   changeAccountType(accountType: AccountType): void {
-    this.profileForm.get('accountType')?.patchValue(accountType);
+    this.fg.get('accountType')?.patchValue(accountType);
   }
 
   listenToAccountTypeChange(): void {
-    this.profileForm
+    this.fg
       .get('accountType')
       ?.valueChanges.pipe(
         tap((value) => {

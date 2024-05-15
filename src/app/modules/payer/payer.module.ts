@@ -21,6 +21,7 @@ import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { PayerEditComponent } from './components/payer-edit/payer-edit.component';
 import { PayerLogInComponent } from './components/payer-log-in/payer-log-in.component';
+import { PasswordModule } from 'primeng/password';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { PayerLogInComponent } from './components/payer-log-in/payer-log-in.comp
     DropdownModule,
     TransactionTableComponent,
     TabMenuModule,
-    ToastModule
+    ToastModule,
+    PasswordModule
   ],
   providers: [MessageService]
 })

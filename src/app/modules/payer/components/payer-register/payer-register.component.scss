@@ -13,6 +13,10 @@
     left: 50%;
     transform: translate(-50%, -50%);
 
+    .password {
+      display: inline-flex;
+    }
+    
     .account-type-btns {
       display: flex;
       gap: 24px;
@@ -54,3 +58,4 @@
     }
   }
 }
+ 

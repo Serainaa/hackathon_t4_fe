@@ -6,41 +6,43 @@ import {
   Validators,
 } from '@angular/forms';
 import { take, tap } from 'rxjs';
-import { PayerService } from '../../services/payer.service';
+import { ProviderService } from '../../services/provider.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-payer-log-in',
+  selector: 'app-provider-login',
   standalone: false,
-  templateUrl: './payer-log-in.component.html',
-  styleUrl: './payer-log-in.component.scss'
+  templateUrl: './provider-login.component.html',
+  styleUrl: './provider-login.component.scss'
 })
-export class PayerLogInComponent {
-  public profileForm: FormGroup;
+export class ProviderLoginComponent {
 
+  public profileForm: FormGroup;
+  
   constructor(
     private formBuilder: FormBuilder,
-    private payerService: PayerService,
+    private providerService: ProviderService,
     private router: Router
   ) {
     this.profileForm = this.formBuilder.group({
-      username: ['', Validators.required],
+      providerName: ['', Validators.required],
       password: ['', [Validators.required]]
     });
   }
 
   onSubmit() {
-    this.payerService
-      .logInPayer$(this.profileForm.value)
+    this.providerService
+      .logInProvider$(this.profileForm.value)
       .pipe(
         tap((response) => {
           console.log(response);
           localStorage.setItem("TOKEN", response.alternativeId)
         }),
-        tap(() => this.router.navigate(['payer/transaction'])),
+        tap(() => this.router.navigate(['provider/history'])),
         take(1)
       )
       .subscribe();
   }
+
 
 }

@@ -1,4 +1,3 @@
-import { AccountType } from "../components/payer-register/payer-register.component";
 
 export interface IPayerAccountParams {
     fullName: string,
@@ -12,5 +11,4 @@ export interface IPayerAccountParams {
     weeklyTransferLimit: number,
     weeklyExpensesLimit: number,
     password: String
-    //accountType: AccountType
 }

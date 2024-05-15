@@ -5,8 +5,8 @@ import { catchError, take, tap } from 'rxjs';
 import { MessageService } from 'primeng/api';
 
 export interface ITransactionParams {
-  sourceId: string | undefined;
-  targetId: string | undefined;
+  payerAlternativeId: string | undefined;
+  shopAlternativeId: string | undefined;
   amount: number | undefined;
 }
 
@@ -27,8 +27,8 @@ export class PayerTransactionComponent {
 
   sendPayment() {
     const params = {
-      sourceId : "standard",
-      targetId : this.dropdown.selectedShop?.shopId,
+      payerAlternativeId : localStorage.getItem("TOKEN"),
+      shopAlternativeId : this.dropdown.selectedShop?.alternativeId,
       amount : this.amount
     }
 
