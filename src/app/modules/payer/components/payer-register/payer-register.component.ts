@@ -41,7 +41,7 @@ export class PayerRegisterComponent {
       paypalUsername: [''],
       weeklyTransferLimit: [''],
       weeklyExpensesLimit: ['', Validators.required],
-      //accountType: [null, Validators.required],
+      accountType: [null, Validators.required],
     });
   }
 
