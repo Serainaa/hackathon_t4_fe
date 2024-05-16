@@ -9,6 +9,7 @@ import {
 import { Observable, Subject, take, takeUntil, tap } from 'rxjs';
 import { PayerService } from '../../services/payer.service';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 
 export enum AccountType {
   BANK = 0,
@@ -22,6 +23,7 @@ export enum AccountType {
   styleUrl: './payer-register.component.scss',
 })
 export class PayerRegisterComponent {
+  public mode: 'register' | 'edit';
   private onDestroy$ = new Subject<boolean>();
   public profileForm: FormGroup;
   public fg: FormGroup;
@@ -30,8 +32,10 @@ export class PayerRegisterComponent {
   constructor(
     private formBuilder: FormBuilder,
     private payerService: PayerService,
-    private router: Router
+    private router: Router,
+    private messageService: MessageService
   ) {
+    this.mode = localStorage.getItem('TOKEN') ? 'edit' : 'register';
     this.profileForm = this.formBuilder.group({
       fullName: ['', Validators.required],
       username: [''],
@@ -47,13 +51,24 @@ export class PayerRegisterComponent {
       //accountType: [null, Validators.required]
     });
     this.fg = new FormGroup({
-      accountType: new FormControl()
+      accountType: new FormControl(),
     });
     //private accountType: new FormControl(null, Validators.required);
   }
 
   ngOnInit(): void {
     this.listenToAccountTypeChange();
+    if (this.mode === 'edit') {
+      this.payerService
+        .getPayerProfile$(localStorage.getItem('TOKEN'))
+        .pipe(
+          tap((user) => {
+            this.fillForm(user);
+          }),
+          take(1)
+        )
+        .subscribe();
+    }
   }
 
   ngOnDestroy(): void {
@@ -61,17 +76,30 @@ export class PayerRegisterComponent {
   }
 
   onSubmit() {
-    this.payerService
+    if (this.mode === "register") {
+      this.payerService
       .createPayerAccount$(this.profileForm.value)
       .pipe(
         tap((response) => {
           console.log(response);
-          localStorage.setItem("TOKEN", response.alternativeId)
+          localStorage.setItem('TOKEN', response.alternativeId);
         }),
         tap(() => this.router.navigate(['payer/transaction'])),
         take(1)
       )
       .subscribe();
+    } else {
+      this.payerService.updateUser$(this.profileForm.value)
+      .pipe(
+        tap((response) => {
+         this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Profile edited successfully!' });
+
+        }),
+        take(1)
+      )
+      .subscribe();
+    }
+
   }
 
   changeAccountType(accountType: AccountType): void {
@@ -111,5 +139,9 @@ export class PayerRegisterComponent {
     this.profileForm.get('iban')?.updateValueAndValidity();
     this.profileForm.get('bankName')?.updateValueAndValidity();
     this.profileForm.get('bankName')?.updateValueAndValidity();
+  }
+
+  fillForm(user: any): void {
+    this.profileForm.patchValue(user);
   }
 }

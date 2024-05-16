@@ -28,15 +28,15 @@ export class PayerService {
   }
 
   logInPayer$(params: IPayerLogin) {
-    const link = 'http://localhost:8081';
+    const link = 'http://localhost:8081/api/users/login';
     return of(params);
-    //return this.httpClient.post(link, params)
+    //return this.httpClient.post<any>(link, params).pipe(map((res) => res.alternativeId));
   }
 
   getPayerProfile$(userId: string): Observable<IShop[]> {
     const link = 'http://localhost:8081/api/users/' + userId;
     // return of(params)
-    return this.httpClient.get<any>(link).pipe(map((res) => res.IPayerAccountParams));
+    return this.httpClient.get<any>(link)
   }
 
   getShops$(): Observable<IShop[]> {
@@ -69,4 +69,11 @@ export class PayerService {
     return this.httpClient.get<any>(link);
 
   }
+
+  updateUser$(params: IPayerAccountParams): Observable<any> {
+    const link = 'http://localhost:8081/api/transactions/' + localStorage.getItem("TOKEN");
+    //return of(params);
+    return this.httpClient.put(link, params)
+  }
+
 }

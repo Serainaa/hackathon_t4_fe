@@ -11,6 +11,7 @@ import { MenuItem } from 'primeng/api';
 export class PayerContainerComponent {
   items: MenuItem[];
   activeItem: MenuItem;
+  amount: number = 0;
 
   constructor(private router: Router) {
 
