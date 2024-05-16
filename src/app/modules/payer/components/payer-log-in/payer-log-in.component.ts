@@ -35,7 +35,7 @@ export class PayerLogInComponent {
       .pipe(
         tap((response) => {
           console.log(response);
-          localStorage.setItem("TOKEN", "	fb9c72e9-0ad2-4e05-acd8-4b4a22c7c4f2")
+          localStorage.setItem("TOKEN", response)
         }),
         tap(() => this.router.navigate(['payer/transaction'])),
         take(1)

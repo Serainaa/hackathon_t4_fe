@@ -12,16 +12,15 @@ export class ShopService {
   constructor(private httpClient: HttpClient) {}
 
   
-  createShopAccount$(params: IShopAccountParams) {
-    const link = 'http://localhost:8081/api/shop';
+  createShopAccount$(params: IShopAccountParams): Observable<any> {
+   const link = 'http://localhost:8081/api/shop';
     //return of(params);
     return this.httpClient.post(link, params)
   }
 
   displayTransactions$(shopId: string): Observable<ITransaction[]> {
     const link = 'http://localhost:8081/api/shop/transactions/' + localStorage.getItem("TOKEN");
-    return this.httpClient.get<any>(link)
-    //.pipe(map((res) => res.transactions));
+    return this.httpClient.get<any>(link);
   }
 
   editShopAccount$(params: IShopAccountParams) {

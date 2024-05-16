@@ -16,6 +16,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { PasswordModule } from 'primeng/password';
 import { ShopLoginComponent } from './components/shop-login/shop-login.component';
+import { MessageService } from 'primeng/api';
+import {  ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { ShopLoginComponent } from './components/shop-login/shop-login.component
     ButtonModule,
     InputNumberModule,
     InputTextModule,
-    PasswordModule
+    PasswordModule,
+    ToastModule
   ]
 })
 export class ShopModule { }

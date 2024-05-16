@@ -13,9 +13,7 @@ export class PayerContainerComponent {
   activeItem: MenuItem;
   amount: number = 0;
 
-  constructor(private router: Router) {
-
-  }
+  constructor(private router: Router) {}
 
   ngOnInit() {
     this.items = [
@@ -29,12 +27,12 @@ export class PayerContainerComponent {
         icon: 'pi pi-fw pi-calendar',
         routerLink: './history',
       },
-      { label: 'Edit', icon: 'pi pi-fw pi-pencil', routerLink: './profile' },
+      { label: 'Edit', icon: 'pi pi-fw pi-cog', routerLink: './profile' },
       {
         label: 'Logout',
-        icon: 'pi pi-fw pi-pencil',
+        icon: 'pi pi-fw pi-sign-out',
         command: (e) => this.logout(),
-      },
+      }
     ];
 
     this.activeItem = this.items[0];

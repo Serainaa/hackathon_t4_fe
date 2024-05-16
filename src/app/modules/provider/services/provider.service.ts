@@ -17,6 +17,12 @@ export class ProviderService {
     //return this.httpClient.post(link, params)
   }
 
+  getProviderProfile$(userId: string): Observable<IProviderAccountParams[]> {
+    const link = 'http://localhost:8081/api/providers/' + userId;
+    // return of(params)
+    return this.httpClient.get<any>(link)
+  }
+
   logInProvider$(params: IProviderLogin) {
     const link = 'http://localhost:8081';
     return of(params);
@@ -27,5 +33,11 @@ export class ProviderService {
     const link = 'http://localhost:8081/api/provider/transactions';
     return this.httpClient.get<any>(link);
     //.pipe(map((res) => res.transactions));
+  }
+
+  updateProvider$(params: IProviderAccountParams): Observable<any> {
+    const link = 'http://localhost:8081/api/transactions/' + localStorage.getItem("TOKEN");
+    //return of(params);
+    return this.httpClient.put(link, params)
   }
 }

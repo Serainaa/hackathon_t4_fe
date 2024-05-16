@@ -1,8 +1,8 @@
 export interface IShopAccountParams {
     shopName: string,
-    VATCode: string,
-    address: string,
-    iban: string,
+    vatCode: string,
+    shopAddress: string,
+    bankAccount: string,
     bankName: string,
     password: string
 }

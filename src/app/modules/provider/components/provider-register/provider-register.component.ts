@@ -8,6 +8,7 @@ import {
 import { take, tap } from 'rxjs';
 import { ProviderService } from '../../services/provider.service';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-provider-register',
@@ -17,12 +18,15 @@ import { Router } from '@angular/router';
 })
 export class ProviderRegisterComponent {
   public profileForm: FormGroup;
+  public mode: 'register' | 'edit';
 
   constructor(
     private formBuilder: FormBuilder,
     private providerService: ProviderService,
-    private router: Router
+    private router: Router,
+    private messageService: MessageService
   ) {
+    this.mode = localStorage.getItem('TOKEN') ? 'edit' : 'register';
     this.profileForm = this.formBuilder.group({
       companyName: ['', Validators.required],
       VATCode: ['', Validators.required ],
@@ -31,8 +35,22 @@ export class ProviderRegisterComponent {
       bankName: ['', Validators.required]
     });
   }
+  ngOnInit(): void {
+    if (this.mode === 'edit') {
+      this.providerService
+        .getProviderProfile$(localStorage.getItem('TOKEN'))
+        .pipe(
+          tap((user) => {
+            this.fillForm(user);
+          }),
+          take(1)
+        )
+        .subscribe();
+    }
+  }
 
   onSubmit() {
+    if (this.mode === "register") {
     this.providerService
       .createProviderAccount$(this.profileForm.value)
       .pipe(
@@ -43,5 +61,19 @@ export class ProviderRegisterComponent {
         take(1)
       )
       .subscribe();
+    } else {
+      this.providerService.updateProvider$(this.profileForm.value)
+      .pipe(
+        tap((response) => {
+         this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Profile edited successfully!' });
+
+        }),
+        take(1)
+      )
+      .subscribe();
+    }
+  }
+  fillForm(user: any): void {
+    this.profileForm.patchValue(user);
   }
 }

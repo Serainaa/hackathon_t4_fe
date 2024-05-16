@@ -1,5 +1,5 @@
 <form [formGroup]="profileForm" (submit)="onSubmit()">
-    <h2>Create your account</h2>
+  <h2>{{mode === "register" ? "Create your account" : "Edit your profile"}}</h2>
     <p-inputGroup>
       <p-inputGroupAddon>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
@@ -41,17 +41,17 @@
         </svg>
       </p-inputGroupAddon>
       <input
-        id="VATCode"
+        id="vatCode"
         class="p-inputtext"
         pInputText
-        formControlName="VATCode"
+        formControlName="vatCode"
         placeholder="VAT Code"
       />
       <small
       class="p-error block"
       *ngIf="
-        profileForm.get('VATCode')?.invalid &&
-        profileForm.get('VATCode')?.dirty
+        profileForm.get('vatCode')?.invalid &&
+        profileForm.get('vatCode')?.dirty
       "
     >
       VAT code is required</small
@@ -68,7 +68,7 @@
       <input
         class="p-inputtext"
         pInputText
-        formControlName="address"
+        formControlName="shopAddress"
         placeholder="Address"
       />
     </p-inputGroup>
@@ -81,17 +81,17 @@
         </svg>
       </p-inputGroupAddon>
       <input
-        id="iban"
+        id="bankAccount"
         class="p-inputtext"
         pInputText
-        formControlName="iban"
+        formControlName="bankAccount"
         placeholder="IBAN"
       />
       <small
       class="p-error block"
       *ngIf="
-        profileForm.get('iban')?.invalid &&
-        profileForm.get('iban')?.dirty
+        profileForm.get('bankAccount')?.invalid &&
+        profileForm.get('bankAccount')?.dirty
       "
     >
       IBAN is required</small

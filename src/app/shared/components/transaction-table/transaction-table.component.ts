@@ -7,6 +7,7 @@ import { InputIconModule } from 'primeng/inputicon';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-transaction-table',
@@ -29,6 +30,8 @@ export class TransactionTableComponent {
     userName: 'User Name',
     shopName: 'Target Name',
     amount: 'Amount',
+    fee: 'Fee',
+    cashBack: 'CashBack'
   };
 
   ngOnInit(): void {

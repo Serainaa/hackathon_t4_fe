@@ -16,6 +16,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { ProviderLoginComponent } from './components/provider-login/provider-login.component';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 
 
 @NgModule({
@@ -37,7 +39,8 @@ import { ProviderLoginComponent } from './components/provider-login/provider-log
     ButtonModule,
     InputNumberModule,
     InputTextModule,
-    PasswordModule
+    PasswordModule,
+    ToastModule
   ]
 })
 export class ProviderModule { }
