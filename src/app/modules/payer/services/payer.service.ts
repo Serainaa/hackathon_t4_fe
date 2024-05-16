@@ -29,8 +29,8 @@ export class PayerService {
 
   logInPayer$(params: IPayerLogin) {
     const link = 'http://localhost:8081/api/users/login';
-    return of(params);
-    //return this.httpClient.post<any>(link, params).pipe(map((res) => res.alternativeId));
+    //return of(params);
+    return this.httpClient.post<any>(link, params).pipe(map((res) => res.alternativeId));
   }
 
   getPayerProfile$(userId: string): Observable<IShop[]> {

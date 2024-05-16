@@ -23,8 +23,9 @@ export class ProviderService {
     //return this.httpClient.post(link, params)
   }
 
-  displayTransactions$(userId: string): Observable<ITransaction[]> {
-    const link = 'http://localhost:3000/transactions';
-    return this.httpClient.get<any>(link).pipe(map((res) => res.transactions));
+  displayTransactions$(): Observable<ITransaction[]> {
+    const link = 'http://localhost:8081/api/provider/transactions';
+    return this.httpClient.get<any>(link);
+    //.pipe(map((res) => res.transactions));
   }
 }

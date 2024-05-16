@@ -25,7 +25,7 @@
     <ng-template pTemplate="body" let-transaction>
       <tr>
         <td *ngIf="transaction.date">{{ transaction.date }}</td>
-        <td *ngIf="transaction?.sourceName">{{ transaction?.sourceName }}</td>
+        <td *ngIf="transaction?.userName">{{ transaction?.userName }}</td>
         <td *ngIf="transaction?.shopName">{{ transaction?.shopName }}</td>
         <td *ngIf="transaction.amount">{{ transaction.amount }}</td>
       </tr>

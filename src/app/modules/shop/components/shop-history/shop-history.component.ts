@@ -14,7 +14,7 @@ export class ShopHistoryComponent {
   history$: Observable<ITransaction[]>;
 
   constructor(private shopService: ShopService) {
-    this.history$ = this.shopService.displayTransactions$("")
+    this.history$ = this.shopService.displayTransactions$(localStorage.getItem("TOKEN"))
   }
 
 }

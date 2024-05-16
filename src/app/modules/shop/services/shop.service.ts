@@ -18,9 +18,10 @@ export class ShopService {
     return this.httpClient.post(link, params)
   }
 
-  displayTransactions$(userId: string): Observable<ITransaction[]> {
-    const link = 'http://localhost:3000/transactions';
-    return this.httpClient.get<any>(link).pipe(map((res) => res.transactions));
+  displayTransactions$(shopId: string): Observable<ITransaction[]> {
+    const link = 'http://localhost:8081/api/shop/transactions/' + localStorage.getItem("TOKEN");
+    return this.httpClient.get<any>(link)
+    //.pipe(map((res) => res.transactions));
   }
 
   editShopAccount$(params: IShopAccountParams) {

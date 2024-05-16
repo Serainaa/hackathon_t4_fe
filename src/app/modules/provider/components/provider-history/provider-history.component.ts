@@ -14,6 +14,6 @@ export class ProviderHistoryComponent {
   history$: Observable<ITransaction[]>;
 
   constructor(private providerService: ProviderService) {
-    this.history$ = this.providerService.displayTransactions$("")
+    this.history$ = this.providerService.displayTransactions$()
   }
 }
